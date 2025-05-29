@@ -1,6 +1,24 @@
+# Python bytecode
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
+
+# Logs
 *.log
+
+# Historias temporales (mantener privado el historial)
 history.json
+
+# Archivos generados o duplicados
+README_es.md
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor o IDE (Visual Studio Code, etc.)
+.vscode/
+.idea/
+*.swp
+

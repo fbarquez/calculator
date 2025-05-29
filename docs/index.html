@@ -1,0 +1,551 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator CLI by Fbarquez</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background: #f9f9f9;
+        }
+        .language-toggle {
+            margin-bottom: 1em;
+        }
+        button {
+            padding: 0.5em 1em;
+            margin-right: 1em;
+            border: none;
+            background-color: #007acc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content {
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+    <script>
+        function showLanguage(lang) {
+            document.getElementById('english').style.display = (lang === 'en') ? 'block' : 'none';
+            document.getElementById('spanish').style.display = (lang === 'es') ? 'block' : 'none';
+        }
+        window.onload = () => showLanguage('en');
+    </script>
+</head>
+<body>
+    <div class="language-toggle">
+        <button onclick="showLanguage('en')">English</button>
+        <button onclick="showLanguage('es')">Español</button>
+    </div>
+
+    <div id="english" class="content"><p><img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python" />
+<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" />
+<img src="https://img.shields.io/badge/Status-In_Progress-yellow.svg" alt="Status" /></p>
+<h1>Calculator (Python CLI Project)</h1>
+<p><strong>Created by Fbarquez</strong></p>
+<p>This is an educational project developed by <strong>Fbarquez</strong> using Python.
+It aims to teach and demonstrate how a real console-based calculator can be built using clear, structured, and testable code.</p>
+
+<hr />
+<h2>Terminal Output Preview</h2>
+<p>
+ <img src="images/image_1.png" alt="screenshot 1" />
+ <br />
+ <img src="images/image_2.png" alt="screenshot 2" />
+</p>
+
+<hr />
+<h2>Supported Operations</h2>
+<table>
+<thead>
+<tr>
+  <th>Operation</th>
+  <th>Function Name</th>
+  <th>Example Input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Addition</td>
+  <td><code>add(a, b)</code></td>
+  <td><code>2 + 3</code></td>
+</tr>
+<tr>
+  <td>Subtraction</td>
+  <td><code>subtract(a, b)</code></td>
+  <td><code>7 - 2</code></td>
+</tr>
+<tr>
+  <td>Multiplication</td>
+  <td><code>multiply(a, b)</code></td>
+  <td><code>4 * 5</code></td>
+</tr>
+<tr>
+  <td>Division</td>
+  <td><code>divide(a, b)</code></td>
+  <td><code>9 / 3</code></td>
+</tr>
+<tr>
+  <td>Square Root</td>
+  <td><code>square_root(a)</code></td>
+  <td><code>sqrt(16)</code></td>
+</tr>
+<tr>
+  <td>Modulo</td>
+  <td><code>modulo(a, b)</code></td>
+  <td><code>10 % 3</code></td>
+</tr>
+<tr>
+  <td>Power</td>
+  <td><code>power(a, b)</code></td>
+  <td><code>2 ** 4</code></td>
+</tr>
+<tr>
+  <td>Percentage</td>
+  <td><code>percentage(a, b)</code></td>
+  <td><code>30% of 200</code></td>
+</tr>
+<tr>
+  <td>Factorial</td>
+  <td><code>factorial(a)</code></td>
+  <td><code>factorial(5)</code></td>
+</tr>
+<tr>
+  <td>Full Expressions</td>
+  <td><code>evaluate(expr)</code></td>
+  <td><code>2 + 3*(5 - 1)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>What is a Python CLI Project?</h2>
+<p>A <strong>Python CLI project</strong> is a program that runs in the terminal (also called the console or command line).
+It does not have buttons or graphical elements—users interact with it by typing commands and reading text responses.</p>
+<blockquote>
+<p>Example: <code>git</code>, <code>pip install</code>, or typing <code>python3 script.py</code> in the terminal.</p>
+</blockquote>
+<p>This calculator works entirely this way.</p>
+<hr />
+<h2>What can this calculator do?</h2>
+<p>This project simulates a real calculator but in a text-only format. It allows you to:</p>
+<ul>
+<li>Perform basic operations: addition, subtraction, multiplication, division</li>
+<li>Use advanced functions: square roots, percentages, powers, modulo, factorial</li>
+<li>Evaluate full expressions like <code>2 + 3 * (5 - 1)</code></li>
+<li>Save a history of operations to a file for future review</li>
+<li>Run tests to automatically check that everything works correctly</li>
+</ul>
+<hr />
+<h2>Project Structure</h2>
+<p>Just like in real-world programming, this project is split into multiple Python files to keep everything clean and organized:</p>
+<pre><code>calculator/
+├── main.py               ← Main program: shows the menu and handles user input
+├── operations.py         ← Math functions: add, divide, etc.
+├── utils.py              ← Utility helpers: show menu, clear screen, validate input
+├── test_operations.py    ← Automated tests to verify that functions work
+├── history.json          ← File to store calculation history
+└── README.md             ← This document
+</code></pre>
+<hr />
+<h2>Tools and Libraries Used</h2>
+<h3>Built-in Python Libraries</h3>
+<h4><code>math</code></h4>
+<p>Allows mathematical operations like square root (<code>sqrt</code>) and factorial.</p>
+<h4><code>json</code></h4>
+<p>Used to store and read data in a human-readable file (<code>history.json</code>).</p>
+<h3>External Library</h3>
+<h4><code>colorama</code></h4>
+<p>Adds colors to text in the terminal (e.g., green for results, red for errors).</p>
+<blockquote>
+<p>Install it with:</p>
+</blockquote>
+<pre><code class="language-bash">pip install colorama
+</code></pre>
+<hr />
+<h2>File-by-File Explanation</h2>
+<h3>1. <code>main.py</code> — The Main Program</h3>
+<p>This is where the program starts. It shows the user a menu, asks what they want to do, and calls the right function.</p>
+<p><strong>Key imports:</strong></p>
+<pre><code class="language-python">from utils import show_menu, get_number, save_history, load_history, clear_screen
+from operations import *
+from colorama import Fore, Style, init
+import math
+</code></pre>
+<ul>
+<li><code>utils</code> provides input/output helpers</li>
+<li><code>operations</code> contains all math functions</li>
+<li><code>colorama</code> is used for colorful terminal messages</li>
+<li><code>math</code> allows secure math operations like <code>sqrt</code> in expressions</li>
+</ul>
+<p><strong>Core Logic:</strong></p>
+<ul>
+<li>Uses a <code>while True:</code> infinite loop to keep the calculator running</li>
+<li>Displays a menu:<pre><code>1. Basic Operations
+2. Advanced Operations
+3. Evaluate Expression
+4. View History
+5. Exit
+</code></pre>
+</li>
+<li>Based on the choice, it calls the appropriate function</li>
+<li>After each operation, the user presses Enter to return to the menu</li>
+</ul>
+<hr />
+<h3>2. <code>operations.py</code> — Math Functions</h3>
+<p>Contains one function for each type of math calculation:</p>
+<pre><code class="language-python">def add(a, b): return a + b
+def divide(a, b): return &quot;Error: Division by zero&quot; if b == 0 else a / b
+</code></pre>
+<ul>
+<li>Functions return results or handle errors (e.g., dividing by 0)</li>
+<li>Includes:<ul>
+<li><code>power(a, b)</code> → a raised to b</li>
+<li><code>square_root(a)</code></li>
+<li><code>modulo(a, b)</code> → remainder of a ÷ b</li>
+<li><code>percentage(total, percent)</code></li>
+<li><code>factorial(a)</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>3. <code>utils.py</code> — Helper Functions</h3>
+<p>These don't calculate math but improve usability:</p>
+<pre><code class="language-python">def show_menu()
+def get_number(prompt)
+def save_history(entry)
+def load_history()
+def clear_screen()
+</code></pre>
+<ul>
+<li><code>show_menu()</code> → prints the list of options</li>
+<li><code>get_number(&quot;...&quot;)</code> → asks for a number and checks it's valid</li>
+<li><code>save_history()</code> &amp; <code>load_history()</code> → handle the <code>history.json</code> file</li>
+<li><code>clear_screen()</code> → clears the terminal for cleaner user interface</li>
+</ul>
+<hr />
+<h3>4. <code>test_operations.py</code> — Automatic Testing</h3>
+<p>This file uses Python’s <code>unittest</code> module to test whether math functions return correct results:</p>
+<pre><code class="language-python">import unittest
+from operations import *
+
+class TestCalculator(unittest.TestCase):
+    def test_add(self): ...
+    def test_divide_zero(self): ...
+</code></pre>
+<p>Run the tests like this:</p>
+<pre><code class="language-bash">python3 test_operations.py
+</code></pre>
+<p>If everything works, you’ll see confirmation. If not, it will tell you which test failed.</p>
+<hr />
+<h2>How Does It All Work Together?</h2>
+<ol>
+<li><p>Start the program:</p>
+<pre><code class="language-bash">python3 main.py
+</code></pre>
+</li>
+<li><p>The menu appears:</p>
+<pre><code>=== CALCULATOR ===
+1. Basic Operations
+2. Advanced Operations
+3. Evaluate Expression
+4. View History
+5. Exit
+</code></pre>
+</li>
+<li><p>You choose an option (e.g., <code>2</code> for advanced operations)</p>
+</li>
+<li><p>The program walks you through: it asks for numbers, calculates, shows the result, and logs it</p>
+</li>
+<li><p>Option <code>5</code> exits the program cleanly</p>
+</li>
+</ol>
+<hr />
+<h2>Run Tests</h2>
+<p>To check that the functions behave correctly, run:</p>
+<pre><code class="language-bash">python3 test_operations.py
+</code></pre>
+<p>Example result:</p>
+<pre><code>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+</code></pre>
+<hr />
+<h2>Feature Roadmap</h2>
+<ul>
+<li>Add a <strong>graphical interface</strong> using <code>tkinter</code> or <code>PyQt</code></li>
+<li>Save history with timestamps (<code>datetime</code>)</li>
+<li>Turn it into a <strong>web app</strong> using <code>Flask</code></li>
+<li>Include <strong>scientific functions</strong> like sine, cosine, logarithm, etc.</li>
+<li>Add language translation support (i18n)</li>
+<li>Persist history using a database like SQLite</li>
+<li>Package it as a CLI tool using <code>argparse</code> and <code>setuptools</code></li>
+</ul>
+<hr />
+<h2>Educational Value</h2>
+<p>This project is ideal for learning:</p>
+<ul>
+<li>How to organize code across multiple files</li>
+<li>Basic to intermediate math in Python</li>
+<li>Handling user input and errors</li>
+<li>Reading/writing files (<code>json</code>)</li>
+<li>Using external libraries (<code>colorama</code>)</li>
+<li>Writing unit tests (<code>unittest</code>)</li>
+<li>Building your first modular CLI application</li>
+</ul>
+<hr />
+<h2>Requirements</h2>
+<ul>
+<li>Python 3.7+</li>
+<li><code>colorama</code> library installed</li>
+</ul>
+<hr />
+<h2>License</h2>
+<p>This project is licensed under the <a href="LICENSE">MIT License</a> © 2025 Fbarquez.<br />
+You are free to use, modify, and distribute this code, but <strong>attribution is required</strong>.<br />
+Any copy or derivative work must keep the original author's credit visible.</p>
+<hr />
+<p>Want to contribute or report issues? Contact Fbarquez or open a Github issue</p>
+</div>
+    <div id="spanish" class="content" style="display:none;"><p><img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python" />
+<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="Licencia" />
+<img src="https://img.shields.io/badge/Status-En_Progreso-yellow.svg" alt="Estado" /></p>
+<h1>Calculadora (Proyecto Python CLI)</h1>
+<p><strong>Creado por Fbarquez</strong></p>
+<p>Este es un proyecto educativo desarrollado por <strong>Fbarquez</strong> utilizando Python.<br />
+Tiene como objetivo enseñar y demostrar cómo se puede construir una calculadora real en consola usando código claro, estructurado y testeable.</p>
+<hr />
+<h2> Vista previa de la salida en terminal</h2>
+<p>
+<img src="images/image_1.png" alt="screenshot 1" />
+<br />
+<img src="images/image_2.png" alt="screenshot 2" />
+<p>
+<hr />
+<h2> Operaciones Compatibles</h2>
+<table>
+<thead>
+<tr>
+  <th>Operación</th>
+  <th>Nombre de la Función</th>
+  <th>Ejemplo de Entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Suma</td>
+  <td><code>add(a, b)</code></td>
+  <td><code>2 + 3</code></td>
+</tr>
+<tr>
+  <td>Resta</td>
+  <td><code>subtract(a, b)</code></td>
+  <td><code>7 - 2</code></td>
+</tr>
+<tr>
+  <td>Multiplicación</td>
+  <td><code>multiply(a, b)</code></td>
+  <td><code>4 * 5</code></td>
+</tr>
+<tr>
+  <td>División</td>
+  <td><code>divide(a, b)</code></td>
+  <td><code>9 / 3</code></td>
+</tr>
+<tr>
+  <td>Raíz Cuadrada</td>
+  <td><code>square_root(a)</code></td>
+  <td><code>sqrt(16)</code></td>
+</tr>
+<tr>
+  <td>Módulo</td>
+  <td><code>modulo(a, b)</code></td>
+  <td><code>10 % 3</code></td>
+</tr>
+<tr>
+  <td>Potencia</td>
+  <td><code>power(a, b)</code></td>
+  <td><code>2 ** 4</code></td>
+</tr>
+<tr>
+  <td>Porcentaje</td>
+  <td><code>percentage(a, b)</code></td>
+  <td><code>30% de 200</code></td>
+</tr>
+<tr>
+  <td>Factorial</td>
+  <td><code>factorial(a)</code></td>
+  <td><code>factorial(5)</code></td>
+</tr>
+<tr>
+  <td>Expresiones</td>
+  <td><code>evaluate(expr)</code></td>
+  <td><code>2 + 3*(5 - 1)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>¿Qué es un Proyecto CLI en Python?</h2>
+<p>Un proyecto CLI (interfaz de línea de comandos) es un programa que se ejecuta en la terminal o consola.<br />
+No tiene botones ni gráficos, el usuario interactúa escribiendo texto y leyendo las respuestas.</p>
+<blockquote>
+<p>Ejemplos: <code>git</code>, <code>pip install</code>, o escribir <code>python3 script.py</code> en la terminal.</p>
+</blockquote>
+<p>Esta calculadora funciona exactamente así.</p>
+<hr />
+<h2>¿Qué puede hacer esta calculadora?</h2>
+<ul>
+<li>Realizar operaciones básicas: suma, resta, multiplicación, división</li>
+<li>Utilizar funciones avanzadas: raíz cuadrada, porcentaje, potencia, módulo, factorial</li>
+<li>Evaluar expresiones completas como <code>2 + 3 * (5 - 1)</code></li>
+<li>Guardar un historial de operaciones</li>
+<li>Ejecutar pruebas automáticas para verificar que todo funciona</li>
+</ul>
+<hr />
+<h2>Estructura del Proyecto</h2>
+<pre><code>calculator/
+├── main.py               ← Programa principal: muestra el menú y recibe entradas
+├── operations.py         ← Funciones matemáticas
+├── utils.py              ← Funciones auxiliares: limpiar pantalla, pedir datos, etc.
+├── test_operations.py    ← Pruebas automáticas
+├── history.json          ← Archivo de historial
+└── README.md             ← Este documento
+</code></pre>
+<hr />
+<h2>Herramientas y Bibliotecas Usadas</h2>
+<h3>Bibliotecas de Python</h3>
+<ul>
+<li><code>math</code>: para operaciones matemáticas como <code>sqrt</code>, <code>factorial</code></li>
+<li><code>json</code>: para guardar y leer historial en archivo</li>
+</ul>
+<h3>Biblioteca externa</h3>
+<ul>
+<li><code>colorama</code>: permite mostrar texto en colores (verde = éxito, rojo = error)</li>
+</ul>
+<blockquote>
+<p>Instalar con:</p>
+</blockquote>
+<pre><code class="language-bash">pip install colorama
+</code></pre>
+<hr />
+<h2>Explicación por Archivo</h2>
+<h3><code>main.py</code> — Programa Principal</h3>
+<p>Muestra el menú, pide una opción, y llama a la función correspondiente.</p>
+<p>Importaciones clave:</p>
+<pre><code class="language-python">from utils import show_menu, get_number, save_history, load_history, clear_screen
+from operations import *
+from colorama import Fore, Style, init
+import math
+</code></pre>
+<p>Usa un bucle <code>while True</code> para mantener la ejecución. Muestra opciones y actúa en consecuencia.</p>
+<hr />
+<h3><code>operations.py</code> — Funciones Matemáticas</h3>
+<p>Define las funciones como:</p>
+<pre><code class="language-python">def add(a, b): return a + b
+def divide(a, b): return &quot;Error: División por cero&quot; if b == 0 else a / b
+</code></pre>
+<p>Incluye potencia, módulo, raíz cuadrada, porcentaje, factorial, etc.</p>
+<hr />
+<h3><code>utils.py</code> — Funciones Auxiliares</h3>
+<ul>
+<li><code>show_menu()</code>: imprime menú</li>
+<li><code>get_number()</code>: pide un número válido</li>
+<li><code>save_history()</code> / <code>load_history()</code>: lee o guarda historial</li>
+<li><code>clear_screen()</code>: limpia pantalla</li>
+</ul>
+<hr />
+<h3><code>test_operations.py</code> — Pruebas Automáticas</h3>
+<p>Usa <code>unittest</code> para comprobar que las funciones funcionen correctamente.</p>
+<p>Ejecutar con:</p>
+<pre><code class="language-bash">python3 test_operations.py
+</code></pre>
+<hr />
+<h2>¿Cómo funciona todo junto?</h2>
+<ol>
+<li>Ejecutás:</li>
+</ol>
+<pre><code class="language-bash">python3 main.py
+</code></pre>
+<ol start="2">
+<li>Elegís opción del menú:</li>
+</ol>
+<pre><code>1. Basic Operations
+2. Advanced Operations
+3. Evaluate Expression
+4. View History
+5. Exit
+</code></pre>
+<ol start="3">
+<li><p>Ingresás los números → se muestra resultado → se guarda</p>
+</li>
+<li><p>Elegís salir con opción <code>5</code></p>
+</li>
+</ol>
+<hr />
+<h2> Ejecutar Pruebas</h2>
+<pre><code class="language-bash">python3 test_operations.py
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+</code></pre>
+<hr />
+<h2>Hoja de ruta de funcionalidades (Próximas funcionalidades = ideas)</h2>
+<ul>
+<li>Crear interfaz gráfica con <code>tkinter</code></li>
+<li>Guardar historial con fecha y hora</li>
+<li>Convertirlo en una app web con <code>Flask</code></li>
+<li>Agregar funciones científicas: seno, coseno, logaritmo</li>
+<li>Internacionalización (traducciones)</li>
+<li>Guardar historial en base de datos (SQLite)</li>
+<li>Empaquetar como herramienta CLI profesional</li>
+</ul>
+<hr />
+<h2>Valor Educativo</h2>
+<p>Este proyecto enseña:</p>
+<ul>
+<li>Estructuración de código en módulos</li>
+<li>Matemática básica e intermedia con Python</li>
+<li>Validación de entrada del usuario</li>
+<li>Archivos JSON</li>
+<li>Pruebas automáticas</li>
+<li>Modularidad y claridad en programas de consola</li>
+</ul>
+<hr />
+<h2>Requisitos</h2>
+<ul>
+<li>Python 3.7 o superior</li>
+<li>Librería <code>colorama</code> instalada</li>
+</ul>
+<hr />
+<h2>Licencia</h2>
+<p>Este proyecto está licenciado bajo la <a href="LICENSE">Licencia MIT</a> © 2025 Fbarquez.<br />
+Podés usar, modificar y compartir este código libremente, pero <strong>debe mantenerse la atribución</strong>.<br />
+Cualquier copia o derivado debe conservar el nombre del autor original.</p>
+<hr />
+<p>Desarrollado con por Fbarquez para aprender, enseñar y seguir creciendo en Python.</p>
+</div>
+</body>
+</html>
