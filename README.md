@@ -13,10 +13,11 @@ It aims to teach and demonstrate how a real console-based calculator can be buil
 
 ---
 
-## Screenshot
+**Live Preview**: [https://fbarquez.github.io/calculator/](https://fbarquez.github.io/calculator/)
 
-![screenshot](images/calculator-image_1.png)
-![screenshot](images/calculator-image_2.png)
+---
+
+This is an educational project developed by Fbarquez using Python...
 
 ---
 
