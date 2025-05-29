@@ -8,16 +8,11 @@
 
 **Available in Spanish**: [README.es.md](README.es.md)
 
-This is an educational project developed by **Fbarquez** using Python. 
-It aims to teach and demonstrate how a real console-based calculator can be built using clear, structured, and testable code.
+An educational project built in Python that demonstrates how to create a real console-based calculator using clear, structured, and testable code.
 
 ---
 
 **Live Preview**: [https://fbarquez.github.io/calculator/](https://fbarquez.github.io/calculator/)
-
----
-
-This is an educational project developed by Fbarquez using Python...
 
 ---
 
