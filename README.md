@@ -141,7 +141,7 @@ def divide(a, b): return "Error: Division by zero" if b == 0 else a / b
 - Includes:
   - `power(a, b)` → a raised to b
   - `square_root(a)`
-  - `modulo(a, b)` → remainder of a ÷ b
+  - `modulo(a, b)` → remainder of a ÷ b (returns "Error: Division by zero" if b is 0)
   - `percentage(total, percent)`
   - `factorial(a)`
 
