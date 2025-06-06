@@ -19,5 +19,8 @@ class TestCalculator(unittest.TestCase):
     def test_percentage(self):
         self.assertEqual(percentage(200, 10), 20)
 
+    def test_modulo_zero(self):
+        self.assertEqual(modulo(10, 0), "Error: Division by zero")
+
 if __name__ == "__main__":
     unittest.main()
